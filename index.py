@@ -1,9 +1,15 @@
 #!/usr/bin/env python
 
 import subprocess
-interface = 'wlan0'
-new_macAddress = '11:22:33:44:99'
-subprocess.call("ifconfig" , shell=True)
-subprocess.call("ifconfig"+ interface + "hw ether" + new_macAddress , shell=True)
-subprocess.call("ifconfig wlan0 up" , shell=True)
+interface = input('interface > ')
+new_macAddress = input('new MAC > ')
 
+print('[+] Chinging MAC address for '+ interface + ' to '+ new_macAddress)
+
+subprocess.call(['ifconfig', interface, 'down'])
+subprocess.call(['ifconfig', interface, 'hw', 'ether', new_macAddress])
+subprocess.call(['ifconfig', interface, 'up'])
+
+
+
+#############-----
